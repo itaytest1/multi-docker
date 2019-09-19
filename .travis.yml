@@ -3,7 +3,6 @@ sudo: required
 services:
     - docker
     
-    
 before_install:
     - docker build -t itay/react-test -f ./client/Dockerfile.dev ./client
     
@@ -17,29 +16,11 @@ after_success:
     - docker build -t itay/multi-worker ./worker
     - docker build -t itay/multi-server ./server
 
-# Log in to the docker CLI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-s
+    # Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-s
 
-# put the images in docker hub
-- docker push itay/multi-client 
-- docker push itay/multi-nginx 
-- docker push itay/multi-worker 
-- docker push itay/multi-server 
-
-#deploy:
-#    provider: elasticbeanstalk
- #   region: "eu-west-2"
-  #  app: "docker-react"
-   # env: "DockerReact-env"
-   # bucket_name: "elasticbeanstalk-eu-west-2-826126725884"
-#    backet_path: "docker-react"
-#    on:
-#    branch: master
-#    access_key_id: $AWS_ACCESS_KEY
-#    secret_access_key:
-#        secure: "$AWS_SECRET_KEY"
-    
-
-
-    
-    
+    # put the images in docker hub
+    - docker push itay/multi-client 
+    - docker push itay/multi-nginx 
+    - docker push itay/multi-worker 
+    - docker push itay/multi-server
