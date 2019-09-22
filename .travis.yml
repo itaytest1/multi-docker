@@ -4,23 +4,23 @@ services:
     - docker
     
 before_install:
-    - docker build -t itay/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t itaytest/multi-docker -f ./client/Dockerfile.dev ./client
     
 #run the tests
 script:
-    - docker run -e CI=true itay/react-test npm run test -- --coverage
+    - docker run -e CI=true itaytest/multi-docker npm run test -- --coverage
 
 after_success:
-    - docker build -t itay/multi-client ./client
-    - docker build -t itay/multi-nginx ./nginx
-    - docker build -t itay/multi-worker ./worker
-    - docker build -t itay/multi-server ./server
+    - docker build -t itaytest/multi-client ./client
+    - docker build -t itaytest/multi-nginx ./nginx
+    - docker build -t itaytest/multi-worker ./worker
+    - docker build -t itaytest/multi-server ./server
 
     # Log in to the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     # put the images in docker hub
-    - docker push itay/multi-client 
-    - docker push itay/multi-nginx 
-    - docker push itay/multi-worker 
-    - docker push itay/multi-server
+    - docker push itaytest/multi-client 
+    - docker push itaytest/multi-nginx 
+    - docker push itaytest/multi-worker 
+    - docker push itaytest/multi-server
