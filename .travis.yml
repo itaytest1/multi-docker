@@ -20,7 +20,7 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
     # put the images in docker hub
-    - docker push itaytest/multi-client 
-    - docker push itaytest/multi-nginx 
-    - docker push itaytest/multi-worker 
+    - docker push itaytest/multi-client
+    - docker push itaytest/multi-nginx
+    - docker push itaytest/multi-worker
     - docker push itaytest/multi-server
