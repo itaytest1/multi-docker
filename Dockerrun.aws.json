@@ -24,7 +24,7 @@
         },
         {
             "name" : "nginx",
-            "image" : "itaytest/nginx",
+            "image" : "itaytest/multi-nginx",
             "essential" : true,
 			"memory" : 128,
             "portMappings": [
