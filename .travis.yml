@@ -24,3 +24,18 @@ after_success:
     - docker push itaytest/multi-nginx
     - docker push itaytest/multi-worker
     - docker push itaytest/multi-server
+    
+ 
+ deploy:
+    provider: elasticbeanstalk
+    region: "eu-west-2"
+    app: "Muldidocker"
+    env: "Muldidocker-env"
+    bucket_name: "elasticbeanstalk-eu-west-2-826126725884"
+    bucket_path: "docker-multi"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: $AWS_SECRET_KEY
+    
